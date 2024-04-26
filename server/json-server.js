@@ -4,8 +4,10 @@ const utils = require("./utils");
 const server = jsonServer.create();
 const middlewares = jsonServer.defaults();
 
-const PORT = 3000;
-const localhostUrl = `http://localhost:${PORT}`;
+const PORT = process.env.PORT || 3000; // Use process.env.PORT for port number if available
+
+// Use the URL of your deployed server
+const baseUrl = "https://mock-json-server-food-app.onrender.com";
 
 server.get("/", (req, res) => {
   const data = {
@@ -14,15 +16,15 @@ server.get("/", (req, res) => {
     data: [
       {
         useCase: "Get all hotels",
-        url: `${localhostUrl}/v1/hotels`,
+        url: `${baseUrl}/v1/hotels`,
       },
       {
         useCase: "Get hotel by Id",
-        url: `${localhostUrl}/v1/hotel/:id`,
+        url: `${baseUrl}/v1/hotel/:id`,
       },
       {
         useCase: "Get by hotel Id - Category wise Objects",
-        url: `${localhostUrl}/v2/hotel/:id`,
+        url: `${baseUrl}/v2/hotel/:id`,
       },
     ],
   };
