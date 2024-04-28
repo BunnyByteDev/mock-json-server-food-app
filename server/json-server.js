@@ -1,5 +1,6 @@
 const jsonServer = require("json-server");
 const utils = require("./utils");
+const cors = require("cors"); // Import the CORS middleware
 
 const server = jsonServer.create();
 const middlewares = jsonServer.defaults();
@@ -8,6 +9,9 @@ const PORT = process.env.PORT || 3000; // Use process.env.PORT for port number i
 
 // Use the URL of your deployed server
 const baseUrl = "https://mock-json-server-food-app.onrender.com";
+
+// Use the CORS middleware to enable CORS
+server.use(cors());
 
 server.get("/", (req, res) => {
   const data = {
